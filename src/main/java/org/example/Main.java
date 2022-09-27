@@ -33,9 +33,9 @@ public class Main {
         double val = formula(top);
         int intPart = (int) val;
         double fraction = val - intPart;
-        double minutes = fraction * 60;
+        int minutes = (int) (fraction * 60);
 
-        return "Hours: " + intPart + "; Minutes: " + minutes;
+        return intPart + ":" + minutes;
     }
 
     public static Map<String, String> getStyleMap(Element element) {
@@ -70,7 +70,7 @@ public class Main {
     public static void main(String[] args) {
         Url url = new Url.Builder("plan.php")
                 .addQueryParameter(new QueryParameter("type", "0"))
-                .addQueryParameter(new QueryParameter("id", "343216597"))
+                .addQueryParameter(new QueryParameter("id", "39884"))
                 .addQueryParameter(new QueryParameter("winW", "1000"))
                 .addQueryParameter(new QueryParameter("winH", "1000"))
                 .build();
@@ -79,20 +79,24 @@ public class Main {
             final Document document = Jsoup.connect(url.toString()).get();
             Elements element = document.select(".coursediv");
 
-            Set<Integer> set = new HashSet<>();
             System.out.println(url);
 
             element.forEach(el -> {
                 Map<String, String> styles = getStyleMap(el);
                 int topValue = Integer.parseInt(styles.get("top").split("px")[0]);
+                String ch = el.attr("ch");
 
-                if (topValue > 0) {
-                    set.add(topValue);
+                if (topValue > 0 && !ch.equals("")) {
+                    int chInt = Integer.parseInt(ch);
+                    int totalTime = topValue + chInt + 6;
+
+                    System.out.println(el.text());
+                    System.out.println("Starts at: " + minAndHour(topValue));
+                    System.out.println("Ends at: " + minAndHour(totalTime));
+                    System.out.println("----------------");
                 }
-                System.out.println(el.text());
             });
 
-            set.forEach(el -> System.out.println(minAndHour(el)));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
