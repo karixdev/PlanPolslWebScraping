@@ -42,4 +42,46 @@ public class CourseTimeCalculatorTest {
         // then
         Assertions.assertEquals(DayOfWeek.TUESDAY, result);
     }
+
+    @Test
+    public void shouldReturnOddWeeks() {
+        // given
+        int left = 337;
+        int cw = 71;
+        DayOfWeek dayOfWeek = DayOfWeek.TUESDAY;
+
+        // when
+        Weeks result = CourseDateAndTimeCalculator.getWeeks(left, cw, dayOfWeek);
+
+        // then
+        Assertions.assertEquals(Weeks.ODD, result);
+    }
+
+    @Test
+    public void shouldReturnEvenWeeks() {
+        // given
+        int left = 254;
+        int cw = 71;
+        DayOfWeek dayOfWeek = DayOfWeek.TUESDAY;
+
+        // when
+        Weeks result = CourseDateAndTimeCalculator.getWeeks(left, cw, dayOfWeek);
+
+        // then
+        Assertions.assertEquals(Weeks.EVEN, result);
+    }
+
+    @Test
+    public void shouldReturnEveryWeek() {
+        // given
+        int left = 254;
+        int cw = 154;
+        DayOfWeek dayOfWeek = DayOfWeek.TUESDAY;
+
+        // when
+        Weeks result = CourseDateAndTimeCalculator.getWeeks(left, cw, dayOfWeek);
+
+        // then
+        Assertions.assertEquals(Weeks.EVERY, result);
+    }
 }
