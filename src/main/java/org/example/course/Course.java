@@ -1,5 +1,6 @@
 package org.example.course;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 public record Course(
@@ -8,9 +9,10 @@ public record Course(
         String teacher,
         LocalTime startsAt,
         LocalTime endsAt,
+        DayOfWeek dayOfWeek,
         Weeks weeks
 ) {
-    public Course(String name, LocalTime startsAt, LocalTime endsAt, Weeks weeks) {
-        this(name, null, null, startsAt, endsAt, weeks);
+    public Course(String name, LocalTime startsAt, LocalTime endsAt, DayOfWeek dayOfWeek, Weeks weeks) {
+        this(name, null, null, startsAt, endsAt, dayOfWeek, weeks);
     }
 }
