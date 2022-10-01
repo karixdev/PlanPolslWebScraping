@@ -42,4 +42,12 @@ public class HtmlAttributeValueExtractor {
 
         return keymaps;
     }
+
+    public static int getCw(Element el) {
+        try {
+            return Integer.parseInt(el.attr("cw"));
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
 }
