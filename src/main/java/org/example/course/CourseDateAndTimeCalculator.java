@@ -39,4 +39,18 @@ public class CourseDateAndTimeCalculator {
 
         throw new IllegalStateException("You should not be here");
     }
+
+    public static Weeks getWeeks(int left, int cw, DayOfWeek dayOfWeek) {
+        if (cw == CourseDateAndTimeConfig.EVERY_WEEK_CW_VALUE) {
+            return Weeks.EVERY;
+        }
+
+        for (Map.Entry<Integer, DayOfWeek> entry : CourseDateAndTimeConfig.getDayOfWeekIntegerMap().entrySet()) {
+            if (dayOfWeek.equals(entry.getValue()) && entry.getKey().equals(left)) {
+                return Weeks.EVEN;
+            }
+        }
+
+        return Weeks.ODD;
+    }
 }
