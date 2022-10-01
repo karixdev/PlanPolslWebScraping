@@ -60,4 +60,31 @@ public class HtmlAttributeValueExtractorTest {
         // then
         Assertions.assertEquals(stylesMap, result);
     }
+
+    @Test
+    public void shouldReturnZeroWithEmptyCwAttr() {
+        // given
+        Element el = new Element("div");
+        int cwValue = 0;
+
+        // when
+        int result = HtmlAttributeValueExtractor.getCw(el);
+
+        // then
+        Assertions.assertEquals(cwValue, 0);
+    }
+
+    @Test
+    public void shouldReturnNonZeroWithNotEmptyCwAttr() {
+        // given
+        Element el = new Element("div");
+        int cwValue = 10;
+        el.attr("cw", String.valueOf(cwValue));
+
+        // when
+        int result = HtmlAttributeValueExtractor.getCw(el);
+
+        // then
+        Assertions.assertEquals(cwValue, result);
+    }
 }
