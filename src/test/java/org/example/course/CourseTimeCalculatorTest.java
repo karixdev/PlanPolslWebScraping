@@ -13,7 +13,7 @@ public class CourseTimeCalculatorTest {
         int top = 259;
 
         // when
-        LocalTime result = CourseDateAndTimeCalculator.getTime(top, 8);
+        LocalTime result = CourseDateAndTimeCalculator.getTime(top, 8, false);
 
         // then
         Assertions.assertEquals(LocalTime.of(8, 30), result);

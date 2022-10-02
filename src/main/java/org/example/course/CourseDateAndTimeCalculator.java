@@ -10,7 +10,11 @@ public class CourseDateAndTimeCalculator {
     // Weeks
     public static final int EVERY_WEEK_CW_VALUE = 154;
 
-    public static LocalTime getTime(int top, double startsAt) {
+    public static LocalTime getTime(int top, double startsAt, boolean addBorderToTop) {
+        if (addBorderToTop) {
+            top += CourseDateAndTimeConfig.COURSE_CELL_BORDER_SIZE;
+        }
+
         int difference = top - CourseDateAndTimeConfig.FIRST_CELL_TOP_VALUE;
         double ratio = difference / CourseDateAndTimeConfig.ONE_HOUR_BLOCK_HEIGHT;
         ratio /= 0.25;
