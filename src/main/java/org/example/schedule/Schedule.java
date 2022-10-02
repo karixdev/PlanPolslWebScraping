@@ -1,6 +1,7 @@
 package org.example.schedule;
 
 import org.example.course.Course;
+import org.example.url.Url;
 
 import java.time.DayOfWeek;
 import java.util.List;
@@ -13,6 +14,18 @@ public class Schedule {
 
     public Schedule(String id) {
         this.id = id;
+    }
+
+    public void download() {
+        // create url
+
+        // web scrape
+
+        // create list of course
+
+        // group courses by day of week
+
+        // add courses to schoolDays list
     }
 
     public String getId() {
