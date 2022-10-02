@@ -9,33 +9,6 @@ import java.util.Map;
 
 public class HtmlAttributeValueExtractorTest {
     @Test
-    public void returnsCorrectChValueWithNotEmptyAttribute() {
-        // given
-        int chValue = 10;
-        Element el = new Element("div");
-        el.attr("ch", String.valueOf(chValue));
-
-        // when
-        int result = HtmlAttributeValueExtractor.getCh(el);
-
-        // then
-        Assertions.assertEquals(chValue, result);
-    }
-
-    @Test
-    public void returnsZeroWithEmptyAttribute() {
-        // given
-        int chValue = 0;
-        Element el = new Element("div");
-
-        // when
-        int result = HtmlAttributeValueExtractor.getCh(el);
-
-        // then
-        Assertions.assertEquals(chValue, result);
-    }
-
-    @Test
     public void shouldReturnValidStylesMap() {
         // given
         Map<String, String> stylesMap = new HashMap<>();
@@ -62,27 +35,27 @@ public class HtmlAttributeValueExtractorTest {
     }
 
     @Test
-    public void shouldReturnZeroWithEmptyCwAttr() {
+    public void shouldReturnZeroWithEmptySizeAttr() {
         // given
         Element el = new Element("div");
         int cwValue = 0;
 
         // when
-        int result = HtmlAttributeValueExtractor.getCw(el);
+        int result = HtmlAttributeValueExtractor.getSizeAttribute(el, "cw");
 
         // then
         Assertions.assertEquals(cwValue, 0);
     }
 
     @Test
-    public void shouldReturnNonZeroWithNotEmptyCwAttr() {
+    public void shouldReturnNonZeroWithNotEmptySizeAttr() {
         // given
         Element el = new Element("div");
         int cwValue = 10;
         el.attr("cw", String.valueOf(cwValue));
 
         // when
-        int result = HtmlAttributeValueExtractor.getCw(el);
+        int result = HtmlAttributeValueExtractor.getSizeAttribute(el, "cw");
 
         // then
         Assertions.assertEquals(cwValue, result);

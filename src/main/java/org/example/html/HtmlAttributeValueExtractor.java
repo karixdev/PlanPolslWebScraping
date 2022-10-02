@@ -6,14 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class HtmlAttributeValueExtractor {
-    public static int getCh(Element el) {
-        try {
-            return Integer.parseInt(el.attr("ch"));
-        } catch (NumberFormatException e) {
-            return 0;
-        }
-    }
-
     public static Map<String, String> getStyles(Element element) {
         Map<String, String> keymaps = new HashMap<>();
         if (!element.hasAttr("style")) {
@@ -43,9 +35,9 @@ public class HtmlAttributeValueExtractor {
         return keymaps;
     }
 
-    public static int getCw(Element el) {
+    public static int getSizeAttribute(Element el, String attrName) {
         try {
-            return Integer.parseInt(el.attr("cw"));
+            return Integer.parseInt(el.attr(attrName));
         } catch (NumberFormatException e) {
             return 0;
         }
