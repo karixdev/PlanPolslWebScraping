@@ -8,6 +8,7 @@ public class CourseDateAndTimeConfig {
     // Time
     public static final int FIRST_CELL_TOP_VALUE = 237;
     public static final double ONE_HOUR_BLOCK_HEIGHT = 45;
+    public static final int COURSE_CELL_BORDER_SIZE = 6;
 
     // Weeks
     public static final int EVERY_WEEK_CW_VALUE = 154;
