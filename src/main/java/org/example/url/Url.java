@@ -1,6 +1,7 @@
 package org.example.url;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Url {
@@ -57,5 +58,18 @@ public class Url {
         public Url build() {
             return new Url(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Url url = (Url) o;
+        return Objects.equals(path, url.path) && Objects.equals(queryParameters, url.queryParameters);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(path, queryParameters);
     }
 }
