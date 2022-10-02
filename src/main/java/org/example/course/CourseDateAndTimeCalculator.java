@@ -31,17 +31,12 @@ public class CourseDateAndTimeCalculator {
 
     public static DayOfWeek getDayOfWeek(int left) {
         Map<Integer, DayOfWeek> leftValueMap = CourseDateAndTimeConfig.getDayOfWeekIntegerMap();
-        if (leftValueMap.containsKey(left)) {
-            return leftValueMap.get(left);
-        }
 
-        for (Integer key : leftValueMap.keySet()) {
-            if (left == key + CourseDateAndTimeConfig.WEEK_CELL_HALF_OF_WIDTH) {
-                return leftValueMap.get(key);
-            }
-        }
-
-        throw new IllegalStateException("You should not be here");
+        return leftValueMap.keySet().stream()
+                .filter(key -> left == key + CourseDateAndTimeConfig.WEEK_CELL_HALF_OF_WIDTH || left == key)
+                .findFirst()
+                .map(leftValueMap::get)
+                .orElseThrow();
     }
 
     public static Weeks getWeeks(int left, int cw, DayOfWeek dayOfWeek) {
