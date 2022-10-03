@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class ElementToCourseMapper {
-    public Course map(Element element,  int scheduleStartTime) {
+    public static Course map(Element element,  int scheduleStartTime) {
         Map<String, String> styles = HtmlAttributeValueExtractor.getStyles(element);
 
         int top = CssPropertyExtractor.getSizeProperty(styles, "top");
