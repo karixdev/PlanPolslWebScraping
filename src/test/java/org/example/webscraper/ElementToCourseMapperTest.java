@@ -15,6 +15,15 @@ public class ElementToCourseMapperTest {
     private final static String VALID_TOP_EXAMPLE = "304";
     private final static String VALID_LEFT_EXAMPLE = "420";
 
+    @Test
+    public void shouldThrowEmptyCourseElementWithNotValidElement() {
+        // given
+        Element element = createValidCourseElement("", "0", "0", Map.of());
+
+        // when and then
+        Assertions.assertThrows(EmptyCourseElementException.class, () -> ElementToCourseMapper.map(element, 7));
+    }
+
     public static Element createValidCourseElement(String text, String cw, String ch, Map<String, String> stylesMap) {
         Element element = new Element("div");
 
