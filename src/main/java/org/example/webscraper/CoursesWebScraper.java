@@ -26,7 +26,7 @@ public class CoursesWebScraper {
         this.courses = new ArrayList<>();
     }
 
-    public int getScheduleStartTime() {
+    public static int getScheduleStartTime(Document document) {
         List<Element> timeCellsList = document.getElementsByClass(TIME_CELL_CLASS).stream()
                 .filter(element -> TimeCellUtils.isValidTimeCell(element.text()))
                 .toList();

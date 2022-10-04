@@ -11,10 +11,9 @@ public class CoursesWebScraperTest {
     public void shouldThrowExceptionWhenNotFoundAnyTimeCell() {
         // given
         Document document = Jsoup.parse("");
-        CoursesWebScraper coursesWebScraper = new CoursesWebScraper(document);
 
         // when and then
-        Assertions.assertThrows(EmptyTimeCellListException.class, coursesWebScraper::getScheduleStartTime);
+        Assertions.assertThrows(EmptyTimeCellListException.class, () -> CoursesWebScraper.getScheduleStartTime(document));
     }
 
     @Test
@@ -25,10 +24,9 @@ public class CoursesWebScraperTest {
                 <div class="cd">13:00-14:00</div>
                 <div class="cd">20:00-21:00</div>
                 """);
-        CoursesWebScraper coursesWebScraper = new CoursesWebScraper(document);
 
         // when
-        int result = coursesWebScraper.getScheduleStartTime();
+        int result = CoursesWebScraper.getScheduleStartTime(document);
 
         // then
         Assertions.assertEquals(7, result);
