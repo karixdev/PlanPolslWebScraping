@@ -4,14 +4,12 @@ import org.example.course.Course;
 import org.example.course.CourseDateAndTimeCalculator;
 import org.example.course.Weeks;
 import org.example.css.CssPropertyExtractor;
-import org.example.exception.EmptyCourseElementException;
 import org.example.html.HtmlAttributeValueExtractor;
 import org.jsoup.nodes.Element;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Map;
-import java.util.Objects;
 
 public class ElementToCourseMapper {
     public static Course map(Element element,  int scheduleStartTime) {
@@ -24,7 +22,7 @@ public class ElementToCourseMapper {
         int cw = HtmlAttributeValueExtractor.getSizeAttribute(element, "cw");
 
         if (top <= 0 || left <= 0 || ch <= 0 || cw <= 0 || styles.isEmpty() || element.text().equals("")) {
-            throw new EmptyCourseElementException("Provided data is not valid course element");
+            return null;
         }
 
         LocalTime startsAt = CourseDateAndTimeCalculator.getTime(top, scheduleStartTime, false);

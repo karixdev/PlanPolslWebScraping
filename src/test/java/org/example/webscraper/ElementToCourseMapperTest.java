@@ -14,12 +14,15 @@ import java.util.Map;
 
 public class ElementToCourseMapperTest {
     @Test
-    public void shouldThrowEmptyCourseElementWithNotValidElement() {
+    public void shouldReturnNullWithNotValidElement() {
         // given
         Element element = CourseElementHelper.createCourseElement("", "0", "0", Map.of());
 
-        // when and then
-        Assertions.assertThrows(EmptyCourseElementException.class, () -> ElementToCourseMapper.map(element, 7));
+        // when
+        Course result = ElementToCourseMapper.map(element, 7);
+
+        // then
+        Assertions.assertNull(result);
     }
 
     @Test
