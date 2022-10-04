@@ -12,10 +12,10 @@ public record Course(
 ) implements Comparable<Course>{
     @Override
     public int compareTo(Course course) {
-        return switch(dayOfWeek.compareTo(course.dayOfWeek)) {
-            case 1 -> 1;
-            case 0 -> (-1) * startsAt.compareTo(course.startsAt);
-            default -> -1;
-        };
+        if (dayOfWeek.compareTo(course.dayOfWeek) != 0) {
+            return dayOfWeek.compareTo(course.dayOfWeek);
+        }
+
+        return startsAt.compareTo(course.startsAt);
     }
 }
