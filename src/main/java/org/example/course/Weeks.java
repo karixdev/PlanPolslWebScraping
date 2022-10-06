@@ -7,11 +7,11 @@ public enum Weeks {
 
     private final String value;
 
-    private Weeks(String value) {
+    Weeks(String value) {
         this.value = value;
     }
 
-    private String getValue() {
+    public String getValue() {
         return value;
     }
 }
