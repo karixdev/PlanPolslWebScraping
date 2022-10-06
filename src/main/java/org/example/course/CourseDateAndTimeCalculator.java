@@ -44,12 +44,11 @@ public class CourseDateAndTimeCalculator {
             return Weeks.EVERY;
         }
 
-        for (Map.Entry<Integer, DayOfWeek> entry : CourseDateAndTimeConfig.getDayOfWeekIntegerMap().entrySet()) {
-            if (dayOfWeek.equals(entry.getValue()) && entry.getKey().equals(left)) {
-                return Weeks.EVEN;
-            }
-        }
+        boolean isEven = CourseDateAndTimeConfig.getDayOfWeekIntegerMap()
+                .entrySet()
+                .stream()
+                .anyMatch(entry -> entry.getKey().equals(left) && entry.getValue().equals(dayOfWeek));
 
-        return Weeks.ODD;
+        return isEven ? Weeks.EVEN : Weeks.ODD;
     }
 }
