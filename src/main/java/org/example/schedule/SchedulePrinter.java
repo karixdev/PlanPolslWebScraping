@@ -1,6 +1,7 @@
 package org.example.schedule;
 
 import org.example.course.Course;
+import org.example.course.Weeks;
 
 import java.time.DayOfWeek;
 import java.util.LinkedList;
@@ -25,6 +26,11 @@ public class SchedulePrinter {
             System.out.println("Description: " + course.description());
             System.out.println("Starts at: " + course.startsAt());
             System.out.println("Ends at: " + course.endsAt());
+            String weeks = "On: " +
+                    course.weeks().getValue() +
+                    " " +
+                    (course.weeks().equals(Weeks.EVERY) ? "week" : "weeks");
+            System.out.println(weeks);
             System.out.println();
         }
     }
