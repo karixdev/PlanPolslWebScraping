@@ -18,7 +18,7 @@ public class ElementToCourseMapperTest {
     private ElementToCourseMapper elementToCourseMapper;
 
     @BeforeEach
-    private void init() {
+    public void setup() {
         elementToCourseMapper = new ElementToCourseMapper(7);
     }
 
