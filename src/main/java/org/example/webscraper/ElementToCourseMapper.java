@@ -1,5 +1,6 @@
 package org.example.webscraper;
 
+import lombok.*;
 import org.example.course.Course;
 import org.example.course.CourseDateAndTimeCalculator;
 import org.example.course.Weeks;
@@ -11,8 +12,14 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Map;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class ElementToCourseMapper {
-    public static Course map(Element element,  int scheduleStartTime) {
+
+    private int scheduleStartTime;
+
+    public Course map(Element element) {
         Map<String, String> styles = HtmlAttributeValueExtractor.getStyles(element);
 
         int top = CssPropertyExtractor.getSizeProperty(styles, "top");
@@ -21,7 +28,7 @@ public class ElementToCourseMapper {
         int ch = HtmlAttributeValueExtractor.getSizeAttribute(element, "ch");
         int cw = HtmlAttributeValueExtractor.getSizeAttribute(element, "cw");
 
-        if (top <= 0 || left <= 0 || ch <= 0 || cw <= 0 || styles.isEmpty() || element.text().equals("")) {
+        if (!isValidCourseElement(element, styles, top, left, ch, cw)) {
             return null;
         }
 
@@ -37,5 +44,20 @@ public class ElementToCourseMapper {
                 dayOfWeek,
                 weeks
         );
+    }
+
+    private boolean isValidCourseElement(
+            Element element,
+            Map<String, String> styles,
+            int top,
+            int left,
+            int ch,
+            int cw) {
+        return !element.text().equals("") &&
+                !styles.isEmpty() &&
+                top > 0 &&
+                left > 0 &&
+                ch > 0 &&
+                cw > 0;
     }
 }
